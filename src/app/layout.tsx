@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import AIChatbot from "@/components/ai-chatbot";
 import "./globals.css";
 
 /**
@@ -49,27 +50,21 @@ export const metadata: Metadata = {
     "business systems",
     "AI software development",
     "CV writing services",
-    "BestWeb.lk",
+    "BestWeb.lk 2026",
   ],
   authors: [{ name: "Sketchworks", url: "https://sketchworks.lk" }],
   creator: "Sketchworks",
   publisher: "Sketchworks",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL("https://sketchworks.lk"),
-  alternates: {
-    canonical: "/",
-  },
+  
+  // OpenGraph for social sharing
   openGraph: {
     type: "website",
     locale: "en_LK",
-    siteName: "Sketchworks",
+    alternateLocale: ["en_US", "en_GB"],
     title: "Sketchworks | Digital Transformation Agency Sri Lanka",
-    description:
-      "From rough concepts to working realities. Award-winning digital agency in Sri Lanka specializing in web experiences, branding, and AI solutions.",
+    description: "From rough concepts to working realities. Award-winning digital agency in Colombo.",
+    siteName: "Sketchworks",
+    url: "https://sketchworks.lk",
     images: [
       {
         url: "/og-image.png",
@@ -79,12 +74,16 @@ export const metadata: Metadata = {
       },
     ],
   },
+  
+  // Twitter Cards
   twitter: {
     card: "summary_large_image",
     title: "Sketchworks | Digital Transformation Agency",
     description: "From rough concepts to working realities.",
     images: ["/twitter-image.png"],
   },
+  
+  // Robots.txt configuration
   robots: {
     index: true,
     follow: true,
@@ -96,91 +95,82 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  
+  // Verification tokens (add your actual tokens)
   verification: {
-    // Add verification codes when deployed
-    // google: 'verification-code',
+    google: "your-google-verification-token",
+    yandex: "your-yandex-verification-token",
   },
 };
 
-/**
- * JSON-LD Schema for Organization (SEO Bonus Points)
- * Structured data for search engines
- */
+// JSON-LD Schema for Organization (SEO Bonus)
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Sketchworks",
   url: "https://sketchworks.lk",
   logo: "https://sketchworks.lk/logo.png",
-  description:
-    "Sri Lanka's premier digital transformation agency building exceptional web experiences and AI-powered solutions.",
+  description: "Sri Lanka's premier digital transformation agency",
   foundingDate: "2024",
   address: {
     "@type": "PostalAddress",
-    addressCountry: "LK",
     addressLocality: "Colombo",
-    addressRegion: "Western Province",
+    addressCountry: "LK",
   },
   contactPoint: {
     "@type": "ContactPoint",
+    telephone: "+94-77-XXX-XXXX",
     contactType: "customer service",
     availableLanguage: ["English", "Sinhala", "Tamil"],
   },
   sameAs: [
-    "https://linkedin.com/company/sketchworks",
-    "https://twitter.com/sketchworks_lk",
+    "https://linkedin.com/company/sketchworks-lk",
+    "https://twitter.com/sketchworkslk",
     "https://facebook.com/sketchworkslk",
   ],
 };
 
-interface RootLayoutProps {
+export default function RootLayout({
+  children,
+}: Readonly<{
   children: React.ReactNode;
-}
-
-export default function RootLayout({ children }: RootLayoutProps) {
+}>) {
   return (
-    <html
-      lang="en"
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Preload critical assets for performance */}
-        <link
-          rel="preload"
-          href="/fonts/space-grotesk.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        {/* PWA Manifest */}
+        {/* Preconnect for performance */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* PWA manifest */}
         <link rel="manifest" href="/manifest.json" />
-        {/* Theme color for mobile browsers */}
-        <meta name="theme-color" content="#1A1A1A" />
-        {/* Apple Touch Icon */}
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="theme-color" content="#CCFF00" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
         {/* JSON-LD Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-body antialiased min-h-screen bg-canvas text-graphite">
-        {/* Theme Provider for Dark Mode */}
+      <body
+        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
+      >
+        {/* Accessibility: Skip to main content link */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-neon-volt focus:text-graphite focus:font-bold focus:rounded-lg"
+        >
+          Skip to main content
+        </a>
+        
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange
         >
-          {/* Skip to main content for accessibility */}
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-neonVolt focus:text-graphite focus:font-bold focus:ring-2 focus:ring-neon focus:rounded"
-          >
-            Skip to main content
-          </a>
           {children}
+          {/* AI Chatbot Component */}
+          <AIChatbot />
         </ThemeProvider>
       </body>
     </html>

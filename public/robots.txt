@@ -1,0 +1,25 @@
+# robots.txt for Sketchworks
+# BestWeb.lk SEO Requirements: No blocked pages
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://sketchworks.lk/sitemap.xml
+
+# Crawl-delay for polite crawling (optional)
+Crawl-delay: 1
+
+# Allow all major bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Block only admin/private areas if they exist
+# Disallow: /admin/
+# Disallow: /private/

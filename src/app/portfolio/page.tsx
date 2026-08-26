@@ -1,158 +1,103 @@
-import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Our Portfolio | Sketchworks - Web Design & Development Projects Sri Lanka',
-  description: 'Explore our portfolio of web design, branding, and software development projects for Sri Lankan businesses. Real results, measurable impact.',
-  keywords: ['portfolio', 'web design projects', 'branding work', 'case studies', 'Sri Lanka'],
-  openGraph: {
-    title: 'Portfolio | Sketchworks',
-    description: 'Browse our latest projects showcasing web experiences, branding, and business systems.',
-    type: 'website',
-  },
+  title: 'Portfolio | Sketchworks',
+  description: 'Real results for Sri Lankan businesses. CV transformations, brand makeovers, and web projects.',
 };
 
 const projects = [
   {
-    slug: 'ceylon-tea-rebrand',
-    client: 'Ceylon Tea Co.',
+    slug: 'tech-startup-rebrand',
+    title: 'FinTech Startup Rebrand',
+    client: 'PayLanka',
     category: 'Visual Branding',
-    title: 'Heritage Meets Modernity',
-    description: 'Complete brand transformation for a 150-year-old tea exporter targeting premium international markets.',
-    services: ['Logo Design', 'Brand Guidelines', 'Packaging', 'Website'],
-    image: '/images/work/ceylon-tea.jpg',
-    link: '/portfolio/case-studies/ceylon-tea-rebrand',
+    image: '/portfolio/paylanka-hero.webp',
+    challenge: 'Unknown startup needed trust-worthy brand to compete with established banks.',
+    result: 'Brand recognition increased 340%. Series A funding secured within 4 months.',
   },
   {
-    slug: 'colombo-tech-hub',
-    client: 'Colombo Tech Hub',
-    category: 'Web Experience',
-    title: 'Digital Home for Entrepreneurs',
-    description: 'Modern website and booking system for Colombo\'s premier co-working space and startup community.',
-    services: ['Web Design', 'Booking System', 'Member Portal', 'SEO'],
-    image: '/images/work/tech-hub.jpg',
-    link: '/portfolio/case-studies/colombo-tech-hub',
+    slug: 'ecommerce-platform-build',
+    title: 'E-commerce Platform Build',
+    client: 'Ceylon Crafts',
+    category: 'Web Experiences',
+    image: '/portfolio/ceylon-crafts-hero.webp',
+    challenge: 'Artisan collective selling only at weekend markets. No online presence.',
+    result: 'Online sales now 65% of revenue. Shipping to 28 countries worldwide.',
   },
   {
-    slug: 'ayurveda-plus-ecommerce',
-    client: 'Ayurveda Plus',
-    category: 'E-commerce',
-    title: 'Wellness Products Online',
-    description: 'Full e-commerce platform for Ayurvedic product manufacturer expanding to Middle East markets.',
-    services: ['E-commerce', 'Payment Integration', 'Inventory System', 'Multi-currency'],
-    image: '/images/work/ayurveda.jpg',
-    link: '/portfolio/case-studies/ayurveda-plus-ecommerce',
+    slug: 'hospital-management-system',
+    title: 'Hospital Management System',
+    client: 'Colombo Medical Centre',
+    category: 'Business Systems',
+    image: '/portfolio/cmc-hero.webp',
+    challenge: 'Paper-based patient records causing 2+ hour wait times and data errors.',
+    result: 'Wait times reduced to 25 minutes. Zero record errors in 18 months.',
   },
 ];
 
-const categories = ['All', 'Visual Branding', 'Web Experience', 'E-commerce', 'Business Systems'];
-
 export default function PortfolioPage() {
   return (
-    <main className="min-h-screen bg-canvas">
-      {/* Hero Section */}
-      <section className="bg-graphite text-white py-20 md:py-32">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="font-heading font-extrabold text-4xl md:text-5xl lg:text-6xl mb-6">
-              Work That{' '}
-              <span className="text-neon-volt">Speaks</span>
-            </h1>
-            <p className="font-body text-lg md:text-xl text-gray-300 mb-8">
-              Real projects for Sri Lankan businesses. Each case study shows 
-              the challenge, our approach, and measurable results.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Filter Section */}
-      <section className="py-8 bg-white border-b border-gray-200" aria-label="Project categories">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category, index) => (
-              <button
-                key={category}
-                className={`px-4 py-2 rounded-full text-sm font-body transition-colors focus:outline-none focus:ring-2 focus:ring-neon-volt ${
-                  index === 0
-                    ? 'bg-blueprint text-white'
-                    : 'bg-canvas text-gray-700 hover:bg-gray-200'
-                }`}
-                aria-pressed={index === 0}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Grid */}
-      <section className="py-16 md:py-24" aria-labelledby="projects-heading">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="projects-heading" className="sr-only">Featured Projects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <article
-                key={project.slug}
-                className="group bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
-              >
-                <Link href={project.link} className="block focus:outline-none focus:ring-2 focus:ring-neon-volt">
-                  <div className="aspect-video bg-gradient-to-br from-blueprint to-graphite relative overflow-hidden">
-                    {/* Placeholder for project image */}
-                    <div className="absolute inset-0 flex items-center justify-center text-white">
-                      <span className="text-6xl opacity-20">{project.client.charAt(0)}</span>
-                    </div>
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="text-white font-body font-semibold flex items-center gap-2">
-                        View Case Study
-                        <ArrowRight className="w-5 h-5" aria-hidden="true" />
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-6">
-                    <p className="text-neon-volt font-body font-medium text-sm mb-2">{project.category}</p>
-                    <h3 className="font-heading font-bold text-xl mb-2 group-hover:text-blueprint transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="font-body text-gray-600 text-sm mb-4">{project.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.services.slice(0, 3).map((service, index) => (
-                        <span
-                          key={index}
-                          className="bg-canvas px-2 py-1 rounded text-xs font-body text-gray-600"
-                        >
-                          {service}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="bg-graphite text-white py-16 md:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-heading font-bold text-3xl md:text-4xl mb-4">
-            Ready to Be Our Next Success Story?
-          </h2>
-          <p className="font-body text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-            Let's discuss your project and create something remarkable together.
+    <main className="min-h-screen bg-canvas-white pt-24 pb-16">
+      <div className="max-w-6xl mx-auto px-6">
+        <header className="mb-16">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-graphite mb-4 font-heading">
+            Selected Work
+          </h1>
+          <p className="text-xl text-gray-600 font-body max-w-2xl">
+            From rough concepts to working realities. Real projects with measurable outcomes.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-neon-volt text-graphite font-body font-semibold px-8 py-4 rounded-md hover:bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-neon-volt focus:ring-offset-2 focus:ring-offset-graphite"
-          >
-            Start Your Project
-            <ArrowRight className="w-5 h-5" aria-hidden="true" />
-          </Link>
+        </header>
+
+        <div className="space-y-16">
+          {projects.map((project, index) => (
+            <article
+              key={project.slug}
+              className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
+            >
+              <Link href={`/portfolio/${project.slug}`} className="group block">
+                <div className="relative aspect-video bg-gray-200 rounded-lg overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-sm font-medium">View case study →</span>
+                  </div>
+                  <div className="w-full h-full flex items-center justify-center text-gray-400">
+                    <span className="text-sm">Project Image: {project.client}</span>
+                  </div>
+                </div>
+              </Link>
+
+              <div className={index % 2 === 1 ? 'md:order-first' : ''}>
+                <span className="inline-block px-3 py-1 bg-neon-volt/20 text-graphite text-sm font-medium rounded-full mb-4 font-body">
+                  {project.category}
+                </span>
+                <h2 className="text-3xl font-bold text-graphite mb-2 font-heading">
+                  {project.title}
+                </h2>
+                <p className="text-lg text-gray-600 mb-4 font-body">
+                  Client: {project.client}
+                </p>
+                <div className="space-y-4 font-body">
+                  <div>
+                    <h3 className="font-semibold text-graphite mb-1">Challenge</h3>
+                    <p className="text-gray-700">{project.challenge}</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-graphite mb-1">Result</h3>
+                    <p className="text-gray-700">{project.result}</p>
+                  </div>
+                </div>
+                <Link
+                  href={`/portfolio/${project.slug}`}
+                  className="inline-flex items-center mt-6 text-blueprint-blue hover:text-neon-volt font-body font-medium"
+                >
+                  View full case study →
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
-      </section>
+      </div>
     </main>
   );
 }
