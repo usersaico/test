@@ -13,6 +13,19 @@ out/
 .env.local
 .env.*
 
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
 # Python
 __pycache__/
 *.pyc
@@ -25,8 +38,10 @@ venv/
 .ENV
 .python-version
 
-# Logs
-*.log
+# Node.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # OS generated files
 .DS_Store
